@@ -18,17 +18,17 @@ class Node:
 
 
 def map():
-    n1 = Node("H")
-    n2 = Node("F")
-    n3 = Node("S")
-    n4 = Node("U")
+    n1 = Node("A")
+    n2 = Node("B")
+    n3 = Node("C")
+    n4 = Node("D")
     n5 = Node("E")
-    n6 = Node("Z")
-    n7 = Node("K")
-    n8 = Node("N")
-    n9 = Node("A")
-    n10 = Node("Y")
-    n11 = Node("T")
+    n6 = Node("F")
+    n7 = Node("G")
+    n8 = Node("H")
+    n9 = Node("I")
+    n10 = Node("J")
+    n11 = Node("K")
     n1.left = n2
     n1.right = n3
     n2.left = n4
@@ -61,6 +61,7 @@ def inOrder(n):
         inOrder(n.right)
 
 start = map()
+print(type(start))
 print("inOrder : \t", end="")
 inOrder(start)
 print()
@@ -70,3 +71,8 @@ print()
 print("postOrder : \t", end="")
 postOrder(start)
 
+# 재귀적 호출 : Recursive Call : 가급적 쓰지 않는 것이 좋다. (해당 함수가 복사되서 메모리 차지함. 가급적 함수 크기를 작게)
+# a -> a, a->b->a
+# 어쩔수 없이 사용해야 하는 경우
+# 예) 팩토리얼, 피보나치 수열, 이진트리 운행(윈도탐색기 검색의 기본 원리)
+# 주의 : 반드시 내부에 종료 조건을 포함
