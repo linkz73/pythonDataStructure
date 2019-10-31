@@ -5,8 +5,8 @@ class SLList:
 
     # 중첩 클래스
     class Node:
-        def __init__(self, name, link):
-            self.name = name
+        def __init__(self, data, link):
+            self.name = data
             self.link = link
 
     def __init__(self):
@@ -19,14 +19,14 @@ class SLList:
     def isEmpty(self):
         return self.size == 0
 
-    def insertFront(self, name):
+    def insertFront(self, data):
         if self.isEmpty():  # sll 이 빈상태에서 첫 노드 삽입
             # Node 클래스에 __str__ 을 따로 정의하지 않았으므로 주소를 반환하게 됨.
-            self.head = self.Node(name, None)
+            self.head = self.Node(data, None)
         else:  # sll 에 기존 노드가 있는 상태에서 헤드 다음[첫 노드] 삽입
             # 우측에 self.head 주소가 먼저 node 로 입력된 후에 좌측의 head 에 이 노드 주소가 입력됨.
             # 즉 헤드의 주소를 노드에 입력시킨 후에 이 노드의 주소르 헤드에 입력해서 대체하면 front 삽입 완료
-            self.head = self.Node(name, self.head)
+            self.head = self.Node(data, self.head)
         self.size += 1
 
     def insertRear(self, name, p):  # name을 p다음에 삽입
