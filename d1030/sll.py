@@ -3,6 +3,7 @@
 
 class SLList:
 
+    # 중첩 클래스
     class Node:
         def __init__(self, name, link):
             self.name = name
@@ -23,6 +24,8 @@ class SLList:
             # Node 클래스에 __str__ 을 따로 정의하지 않았으므로 주소를 반환하게 됨.
             self.head = self.Node(name, None)
         else:  # sll 에 기존 노드가 있는 상태에서 헤드 다음[첫 노드] 삽입
+            # 우측에 self.head 주소가 먼저 node 로 입력된 후에 좌측의 head 에 이 노드 주소가 입력됨.
+            # 즉 헤드의 주소를 노드에 입력시킨 후에 이 노드의 주소르 헤드에 입력해서 대체하면 front 삽입 완료
             self.head = self.Node(name, self.head)
         self.size += 1
 
@@ -30,6 +33,7 @@ class SLList:
         if p is None:  # 삽입할 위치가 없는 경우, 빈 경우 -> 제일 앞 삽입
             self.insertFront(name)
         else:  # 삽입 위치가 있다.
+            # p 위치의 주소를 노드에 입력하고 이 노드의 주소를 원래의 p.link 에 주소를 대체하면 뒤쪽 삽입이 완료
             p.link = SLList.Node(name, p.link)
         self.size += 1
 
@@ -37,6 +41,7 @@ class SLList:
         if self.isEmpty():
             raise EmptyError("Underflow")
         else:
+            # 제일 앞단의 노드를 삭제하기 위해 앞단의 링크 주소 정보를 head 주소로 대체
             self.head = self.head.link
             self.size -= 1
 
