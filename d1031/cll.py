@@ -40,7 +40,12 @@ class CLList:
             # 기존 sll 과 동일
             p.link = CLList.Node(data, p.link)
         else:  # 마지막 노드
-            self.tail = self.tail.link = CLList.Node(data, self.tail.link)
+            # !! 연쇄 할당이 제대로 안됨.
+            # self.tail = self.tail.link = CLList.Node(data, self.tail.link)
+            # self.tail = CLList.Node(data, self.tail.link)
+            t = CLList.Node(data, self.tail.link)
+            self.tail.link = t
+            self.tail = t
 
         self.size += 1
 
@@ -56,7 +61,7 @@ class CLList:
     def deleteRear(self, p):
         if self.isEmpty() or p is None:
             raise EmptyError("Underflow")
-        elif p != self.tail:  # 중간
+        elif p.link != self.tail:  # 중간
             p.link = p.link.link
         elif p == self.head:  # 처음
             self.deleteFront()
@@ -105,15 +110,30 @@ class CLList:
         # print()
         # print(f"head - {self.head} [link : {self.head.link}]")
         # print(f"tail - {self.tail} [link : {self.tail.link}]")
-        while p:
+        i = 0
+
+        # while p:
+        #     # if p.link != self.head:
+        #     i += 1
+        #     if p != self.tail:
+        #         print(f"{i}. {p.data} {p} [link : {p.link}] => ")
+        #         # print(f"{p.data} => ", end="")
+        #     else:
+        #         print(f"{i}. {p.data} {p} [link : {p.link}]")
+        #         break
+        #     p = p.link
+
+        for i in range(self.get_size()):
             # if p.link != self.head:
+            i += 1
             if p != self.tail:
-                print(f"{p.data} {p} [link : {p.link}] => ", end="")
+                print(f"{i}. {p.data} {p} [link : {p.link}] => ")
                 # print(f"{p.data} => ", end="")
             else:
-                print(f"{p.data} {p} [link : {p.link}]")
+                print(f"{i}. {p.data} {p} [link : {p.link}]")
                 break
             p = p.link
+        print()
 
 class EmptyError(Exception):
     pass
