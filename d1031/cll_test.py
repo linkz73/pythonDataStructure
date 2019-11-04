@@ -36,3 +36,8 @@ if __name__ == "__main__":
     # cll.deleteRear(p)
     # cll.printcll()
 
+    print(f"cll.head : {cll.head}")
+    print(f"cll.head.link : {cll.head.link}")
+    print(f"cll.tail : {cll.tail}")
+    print(f"cll.tail.link : {cll.tail.link}")
+

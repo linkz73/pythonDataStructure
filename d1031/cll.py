@@ -20,10 +20,11 @@ class CLList:
 
     def insertFront(self, data):
         if self.isEmpty():
-            t = self.Node(data, None)  # 빈 노드의 주소
-            self.head = t  # 빈노드를 헤드로 지정
-            self.head.link = t  # 빈노드 주소를 헤드가 가리키는 링크에 입력
-            self.tail = t  # 헤드의 주소를 tail 이 가리키는 링크에 입력
+            # t = self.Node(data, None)  # 빈 노드의 주소
+            # self.head = t  # 빈노드를 헤드로 지정
+            # self.head.link = t  # 빈노드 주소를 헤드가 가리키는 링크에 입력
+            # self.tail = t  # 헤드의 주소를 tail 이 가리키는 링크에 입력
+            self.tail = self.head = self.head.link = self.Node(data, None)
         else:
             # head 주소값을 받아와 노드를 만들고 그 노드의 주소를 헤드에 입력
             self.head = self.Node(data, self.head)
@@ -32,14 +33,14 @@ class CLList:
         self.size += 1
 
     def insertRear(self, data, p):
-        if p is None:
+        if p is None: #삽입할 위치가 없다. 없는 경우, 빈 경우=>제일앞 삽입
             self.insertFront(data)
-        elif p.link != self.head:
+        elif p != self.tail:  # 중간 삽입
             # p 위치의 주소를 노드에 입력하고 이 노드의 주소를 원래의 p.link 에 주소를 대체하면 뒤쪽 삽입이 완료
             # 기존 sll 과 동일
             p.link = CLList.Node(data, p.link)
         else:  # 마지막 노드
-            self.tail = self.tail.link = CLList.Node(data, self.head)
+            self.tail = self.tail.link = CLList.Node(data, self.tail.link)
 
         self.size += 1
 
@@ -95,7 +96,7 @@ class CLList:
         while True:
             if trg == p.data:
                 return p
-            if p.link == self.head:
+            if p == self.tail:
                 return None
             p = p.link
 
@@ -105,11 +106,12 @@ class CLList:
         # print(f"head - {self.head} [link : {self.head.link}]")
         # print(f"tail - {self.tail} [link : {self.tail.link}]")
         while p:
-            if p.link != self.head:
-                # print(f"{i}.{p.data}-{p} [link : {p.link}] => ", end="")
-                print(f"{p.data} => ", end="")
+            # if p.link != self.head:
+            if p != self.tail:
+                print(f"{p.data} {p} [link : {p.link}] => ", end="")
+                # print(f"{p.data} => ", end="")
             else:
-                print(f"{p.data}")
+                print(f"{p.data} {p} [link : {p.link}]")
                 break
             p = p.link
 
