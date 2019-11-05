@@ -15,3 +15,17 @@ if __name__ == "__main__":
     dll.insert("둘리", 7, "영희")
     dll.printDll()
 
+    print(f"전체 크기 : {dll.get_size()}")
+
+    dll.delete('영희')
+    dll.printDll()
+
+    dll.delete('철수')
+    dll.printDll()
+
+    dll.delete('길동')
+    dll.printDll()
+
+    dll.delete('둘리')
+    dll.printDll()
+

@@ -56,20 +56,46 @@ class DLList:
 
     def delete(self, pos):
         p = self.searchNode(pos)
+        # 하나 남은 노드 삭제
+        if p.pre is None and p.next is None:
+            self.head = None
 
+        # 첫 노드 삭제
+        elif p.pre is None:
+            p.next.pre = None
+            self.head = p.next
+
+        # 마지막 노드 삭제
+        elif p.next is None:
+            p.pre.next = None
+
+        # 중간 노드 삭제
+        # elif not(p.pre is None or p.next is None):
+        else:
+            # elif p.pre is not None and p.next is not None:
+            p.pre.next = p.next
+            p.next.pre = p.pre
+
+        self.size -= 1
 
     def printDll(self):
         p = self.head
         i = 0
-        print(f"head = {self.head}")
+        # print(f"head = {self.head}")
         while True:
             # if p.link != self.head:
             i += 1
-            if p.next is not None:
-                print(f"{i}. {p.name},{p.age} {p} [pre: {p.pre}, next: {p.next}] => ")
-                # print(f"{p.data} => ", end="")
-            else:
-                print(f"{i}. {p.name},{p.age} {p} [pre: {p.pre}, next: {p.next}]")
+            # if p is None:
+            if self.isEmpty():
+                print("링크드리스트 비어 있음")
                 break
+            else:
+                if p.next is not None:
+                    # print(f"{i}. {p.name},{p.age} {p} [pre: {p.pre}, next: {p.next}] => ")
+                    print(f"{i}. {p.name},{p.age}  => ", end="")
+                    # print(f"{p.data} => ", end="")
+                else:
+                    # print(f"{i}. {p.name},{p.age} {p} [pre: {p.pre}, next: {p.next}]")
+                    print(f"{i}. {p.name},{p.age}")
+                    break
             p = p.next
-        print()
