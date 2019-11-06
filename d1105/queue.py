@@ -19,8 +19,35 @@ def enQue(item):
 
     size += 1
 
-def deQue():
-    pass
 
-def printq():
-    pass
+def deQue():
+    global front, rear, size
+    res = None
+    if size != 0:
+        res = front.item
+        front = front.next
+        size -= 1
+        if size == 0:
+            rear = None
+    else:
+        print("underflow!! 출력불가")
+
+    return res
+
+
+def printQ():
+    if size == 0:
+        print("Queue is empty!")
+        return
+
+    print("Front <=\t", end="")
+    p = front
+    while p:
+
+        if p.next is not None:
+            print(p.item, "<=", end="")
+        else:
+            print(p.item, '<= rear')
+
+        p = p.next
+

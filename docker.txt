@@ -1,0 +1,5 @@
+윈도에 docker 이용 django 설치
+
+https://m.blog.naver.com/PostView.nhn?blogId=wideeyed&logNo=221355739161&proxyReferer=https%3A%2F%2Fwww.google.com%2F
+
+docker run --name django1 -it -p 7000-7009:7000-7009 -v "C:\test\django\src:/usr/django/app" python:3.6.6-stretch /bin/bash
