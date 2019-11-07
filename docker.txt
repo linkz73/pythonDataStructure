@@ -2,4 +2,9 @@
 
 https://m.blog.naver.com/PostView.nhn?blogId=wideeyed&logNo=221355739161&proxyReferer=https%3A%2F%2Fwww.google.com%2F
 
-docker run --name django1 -it -p 7000-7009:7000-7009 -v "C:\test\django\src:/usr/django/app" python:3.6.6-stretch /bin/bash
+docker run --name django1 -it -p 7000-7009:7000-7009 -v "d:\python\django-test\src:/usr/django/app" python:3.6.6-stretch /bin/bash
+
+
+카스퍼스키 사용환경에서 Docker - 방화벽 설정 해제하기
+
+https://matthewhorne.me/docker-drive-sharing-seems-blocked-firewall-kaspersky/

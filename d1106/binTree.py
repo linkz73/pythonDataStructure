@@ -54,7 +54,7 @@ class BinaryTree:
         if root is None:
             return 0
         else:
-            return 1 + max(self.height(root.left) + self.height(root.right)) 
+            return 1 + max(self.height(root.left), self.height(root.right))
         
     def size(self, root):  # 재귀호출 사용해 전체 노드수 구하기
         if root is None:
