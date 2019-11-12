@@ -31,7 +31,7 @@ class BinHeap:
         return mins
 
     def downHeap(self, i):
-        while 2*i < self.N:  # i의 왼쪽 자식이 Heap에 있을 동안 반복(전이진트리이므로 좌 자노드가 없다는 것은 우 자노드도 없음)
+        while 2*i <= self.N:  # i의 왼쪽 자식이 Heap에 있을 동안 반복(전이진트리이므로 좌 자노드가 없다는 것은 우 자노드도 없음)
             k = 2 * i  # k가 왼쪽 자식임을 의미.
             if k < self.N and self.a[k][0] > self.a[k+1][0]:  # 왼쪽과 오른쪽 자식을 비교
                 # a[k][0] : 키값, a[k][1] : 데이터 a는 a[[], [10, 'apple'],[12,'orange'], .... ]

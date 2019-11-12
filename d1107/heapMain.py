@@ -30,11 +30,12 @@ if __name__ == "__main__":
     # bh.printHeap()
     #
     # print("최소힙 확인 : ")
+    bh.createHeap()
     # bh.printHeap()
     # print("최소값[root] 삭제 : ")
     # print("삭제된 루트 : ", bh.deleteMin())
     # bh.printHeap()
-    # 
+    #
     # bh.insert([8,'사과'])
     # bh.printHeap()
     

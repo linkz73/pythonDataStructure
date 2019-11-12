@@ -29,7 +29,7 @@ class BST:
 
     # 노드 삽입
     def put(self, key, value):
-        return self.putItem(self.root, key, value)
+        self.root = self.putItem(self.root, key, value)
 
     def putItem(self, n, k, v):
         if n is None:
@@ -41,21 +41,22 @@ class BST:
             n.right = self.putItem(n.right, k, v)
         else:  # n.key == k 같은 노드가 존재하는 경우. 삽입 불가/갱신
             n.value = v
-        # return n
-
-    def deleteMin(self, n):  # 최소값 삭제
-        if n.left is None:
-            return n.right
-        n.left = self.del_min(n.left)
         return n
 
-    def del_min(self, n):
+    # 메뉴 만들때 전체에서 최소값 삭제시 필요    
+    def deleteMin(self):  # root 부터 최소값 삭제
+        if self.root is None:
+            print("트리가 비어 있음")
+        self.root = self.delMin(self.root)
+
+    # 특정노드 아래에서 최소값 삭제
+    def delMin(self, n):  # 특정 노드부터 최소값 찾기
         if n.left is None:
             return n.right
-        n.left = self.del_min(n.left)
+        n.left = self.delMin(n.left)
         return n
 
-    def min(self):  #최소값 찾기
+    def min(self):  # 최소값 찾기
         if self.root is None:
             return None
 
@@ -71,14 +72,13 @@ class BST:
         if n is not None:
             if n.left:
                 self.inorder(n.left)
-                print(f"[{str(n.key)} {n.value}]", end='')
-            elif n.right:
-                self.indoor(n.right)
+            print(f"[{str(n.key)} {n.value}]", end='')
+            if n.right:
+                self.inorder(n.right)
 
-        return self.minimum(n.right)
-
+    # 메뉴에서 특정 노드 삭제
     def delete(self, k):
-        self.root = self.delNode(self, self.root, k)
+        self.root = self.delNode(self.root, k)
 
     def delNode(self, n, k):
         if n is None:  # 비어 있어 삭제 못함
@@ -94,7 +94,7 @@ class BST:
             # 2. 왼쪽 자노드가 없는 경우,
             if n.left is None:
                 return n.right
-            # 3.자노드가 2개
+            # 3.자노드가 2개 중 오른 쪽의 최소값을 삭제된 노드로 대체
             t = n
             n = self.minimum(t.right)
             n.right = self.deleteMin(t.right)
